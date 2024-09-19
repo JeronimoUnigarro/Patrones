@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurador de Computadoras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9f2f9;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1, h2 {
+            color: #004080;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            margin: 10px 0 5px;
+            text-align: left;
+            width: 80%;
+        }
+        select, input {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 10px;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 80%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            background: #cce5ff;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Configurador de Computadoras Personalizadas</h1>
+    <form id="computerForm">
+        <label>Procesador:</label>
+        <select id="processor" required>
+            <option value="" disabled selected>Selecciona un procesador</option>
+            <option value="Intel Core i5">Intel Core i5</option>
+            <option value="AMD Ryzen 5">AMD Ryzen 5</option>
+            <option value="Intel Core i7">Intel Core i7</option>
+            <option value="AMD Ryzen 7">AMD Ryzen 7</option>
+            <option value="Intel Core i9">Intel Core i9</option>
+        </select>
+        
+        <label>RAM (GB):</label>
+        <select id="ram" required>
+            <option value="" disabled selected>Selecciona la RAM</option>
+            <option value="8">8 GB</option>
+            <option value="16">16 GB</option>
+            <option value="32">32 GB</option>
+            <option value="64">64 GB</option>
+            <option value="128">128 GB</option>
+        </select>
+        
+        <label>Almacenamiento (GB):</label>
+        <select id="storage" required>
+            <option value="" disabled selected>Selecciona almacenamiento</option>
+            <option value="256">256 GB</option>
+            <option value="512">512 GB</option>
+            <option value="1024">1 TB</option>
+            <option value="2048">2 TB</option>
+        </select>
+        
+        <button type="button" onclick="addComputer()">Agregar Computadora</button>
+    </form>
+
+    <h2>Computadoras Configuradas</h2>
+    <ul id="computerList"></ul>
+
+    <script>
+        const computers = [];
+
+        function addComputer() {
+            const processor = document.getElementById('processor').value;
+            const ram = document.getElementById('ram').value;
+            const storage = document.getElementById('storage').value;
+
+            const computer = `Processor: ${processor}, RAM: ${ram}GB, Storage: ${storage}GB`;
+            computers.push(computer);
+
+            const li = document.createElement('li');
+            li.textContent = computer;
+            document.getElementById('computerList').appendChild(li);
+
+            document.getElementById('computerForm').reset();
+            document.getElementById('processor').value = ""; // Reiniciar selección
+            document.getElementById('ram').value = ""; // Reiniciar selección
+            document.getElementById('storage').value = ""; // Reiniciar selección
+        }
+    </script>
+</body>
+</html>
